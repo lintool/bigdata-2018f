@@ -160,6 +160,36 @@ make sure you get the right version.</p>
 <div>
 <h3>Distributed Hadoop Cluster: Datasci</h3>
 
+<p>In addition to running "toy" Hadoop on a single node (which
+obviously defeats the point of a distributed framework), we're going
+to using the school's modest Hadoop teaching cluster called Datasci.</p>
+
+<p>Accounts are already set up for students enrolled in the
+course. You should be able to log into the cluster as follows:</p>
+
+<pre>
+ssh -D 1080 datasci.cs.uwaterloo.ca
+</pre>
+
+<p>The <code>-D</code> option specifies dynamic port forwarding, which
+you'll need for accessing the Hadoop UIs through a SOCKS proxy. The
+simplest approach is via the Firefox browser: go to preferences and
+access "Network Proxy" settings: your settings should look
+something <a href="images/datasci-proxy.png">like this</a>.  You
+should then be able to access the Resource Manager (RM) webapp
+at <a href="http://datasci.cs.uwaterloo.ca:8088/cluster"><code>http://datasci.cs.uwaterloo.ca:8088/cluster</code></a>.
+It's important that you get the proxy working, because the RM webapp
+is the primary point of access for examining and debugging jobs on the
+cluster.</p>
+
+<p>With Firefox, the proxy setup limits your ability to access other
+sites; turn off the proxy once you're done with the cluster. One
+helpful tip while working on assignments is to access the cluster
+webapp in Firefox, and use another browser for accessing other
+sites. There are many other equivalent ways to set up your proxy
+(different OSes, different browsers, etc.) as well as alternative
+workflows. Feel free to share tips, experiences, etc. on Piazza.</p>
+
 </div>
 
 <div style="padding-bottom: 100px"></div>
