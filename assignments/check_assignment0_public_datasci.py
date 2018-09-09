@@ -16,7 +16,7 @@ from subprocess import call
 signal.signal(signal.SIGPIPE, signal.SIG_DFL)
 
 def check_a0(u):
-  """Run Assignment 0 on the Datasci cluster"""
+  """Run Assignment 0 on the Datasci Cluster"""
   call(["mvn", "clean", "package"])
   call(["hadoop", "jar", "target/assignments-1.0.jar",
         "ca.uwaterloo.cs451.a0.PerfectX",
