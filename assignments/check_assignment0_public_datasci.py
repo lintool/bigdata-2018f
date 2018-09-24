@@ -4,7 +4,7 @@ CS 451 Data-Intensive Distributed Computing (Fall 2018):
 Assignment 0 public check script for the Datasci cluster
 
 Sample usage:
-$ ./check_assignment0_public_altiscale.py lintool
+$ ./check_assignment0_public_datasci.py lintool
 """
 
 import sys

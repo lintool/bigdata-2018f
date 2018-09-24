@@ -4,13 +4,16 @@ CS 451 Data-Intensive Distributed Computing (Fall 2018):
 Assignment 1 public check script for the Datasci cluster
 
 Sample usage:
-$ ./check_assignment1_public_altiscale.py lintool
+$ ./check_assignment1_public_datasci.py lintool
 """
 
 import sys
 import os
+import signal
 from subprocess import call
-import re
+
+# hack to avoid broken pipe error
+signal.signal(signal.SIGPIPE, signal.SIG_DFL)
 
 def check_a1(u):
   """Run Assignment 1 on the Datasci Cluster"""
@@ -23,9 +26,9 @@ def check_a1(u):
          "-input", "/data/cs451/simplewiki-20180901-sentences.txt",
          "-output", "cs451-"+u+"-a1-wiki-stripes", "-reducers", "5", "-threshold", "50"])
   print("\n\nQuestion 7.")
-  call("hadoop fs -cat cs451-"+u+"-a1-wiki-pairs/part-r-0000* | grep '(hockey,' | sort -t'(' -k 3 -n -r | head -5",shell=True)
+  call("hadoop fs -cat cs451-"+u+"-a1-wiki-pairs/part-r-0000* | grep '(hockey,' | sort -t'(' -k 3 -g -r | head -5",shell=True)
   print("\n\nQuestion 8.")
-  call("hadoop fs -cat cs451-"+u+"-a1-wiki-pairs/part-r-0000* | grep '(data,' | sort -t'(' -k 3 -n -r | head -5",shell=True)
+  call("hadoop fs -cat cs451-"+u+"-a1-wiki-pairs/part-r-0000* | grep '(data,' | sort -t'(' -k 3 -g -r | head -5",shell=True)
   print("");
 
 if __name__ == "__main__":
