@@ -35,13 +35,13 @@ def check_a2(u):
          "--input", "/data/cs451/simplewiki-20180901-sentences.txt",
          "--output", "cs451-"+u+"-a2-wiki-pmi-stripes", "--reducers", "8", "--threshold", "10"])
   print("\n\nBigram pairs:")
-  call("hadoop fs -cat cs451-"+u+"-a2-wiki-bigram-pairs/part-0000* | grep '((dream,' | sort | head", shell=True, stderr=DEVNULL)
+  call("hadoop fs -cat cs451-"+u+"-a2-wiki-bigram-pairs/part-0000* | grep '((dream,' | sort | head", shell=True)
   print("\n\nBigram stripes:")
-  call("hadoop fs -cat cs451-"+u+"-a2-wiki-bigram-stripes/part-0000* | grep '(dream,'", shell=True, stderr=DEVNULL)
+  call("hadoop fs -cat cs451-"+u+"-a2-wiki-bigram-stripes/part-0000* | grep '(dream,'", shell=True)
   print("\n\nPMI pairs:")
-  call("hadoop fs -cat cs451-"+u+"-a2-wiki-pmi-pairs/part-0000* | grep '((dream,' | sort | head", shell=True, stderr=DEVNULL)
+  call("hadoop fs -cat cs451-"+u+"-a2-wiki-pmi-pairs/part-0000* | grep '((dream,' | sort | head", shell=True)
   print("\n\nPMI stripes:")
-  call("hadoop fs -cat cs451-"+u+"-a2-wiki-pmi-stripes/part-0000* | grep '(dream,'", shell=True, stderr=DEVNULL)
+  call("hadoop fs -cat cs451-"+u+"-a2-wiki-pmi-stripes/part-0000* | grep '(dream,'", shell=True)
   print("")
 
 if __name__ == "__main__":
