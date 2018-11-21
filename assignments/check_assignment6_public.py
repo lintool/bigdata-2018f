@@ -13,15 +13,15 @@ from subprocess import call
 import argparse
 import re
 
-def check_a6(pn,env,iterations):
-    spark_cmd = ["spark-submit"]
+def check_a6(pn,env,iterations,memory):
+    spark_cmd = ["spark-submit", "--driver-memory", memory]
     cp_cmd = ["cp"]
     mkdir_cmd = ["mkdir"]
     eval_cmd = "spam_eval.sh"
     data_prefix = "/u3/cs451/public_html/spam"
     cluster_options = ""
     if env != 'linux':
-        spark_cmd = ["spark-submit", "--num-executors", "2", "--executor-cores", "2", "--executor-memory", "8G"]
+        spark_cmd = ["spark-submit", "--num-executors", "2", "--executor-cores", "2", "--executor-memory", "8G", "--driver-memory", memory]
         cp_cmd = ["hadoop","fs", "-cp"]
         mkdir_cmd = ["hadoop","fs","-mkdir"]
         eval_cmd = "spam_eval_hdfs.sh"
@@ -122,10 +122,11 @@ def check_a6(pn,env,iterations):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="CS 451 2018 Fall Assignment 6 Public Test Script")
     parser.add_argument('username',metavar='Github Username', help="Github username",type=str)
+    parser.add_argument('-m','--memory',help="Amount of memory to give Spark jobs",type=str,default="2G")
     parser.add_argument('-e', '--env', help='Environment to test under.',type=str,default='linux')
     parser.add_argument('-i', '--iterations', help='Number of shuffle iterations',type=int,default=3)
     args=parser.parse_args()
     try:
-        check_a6(args.username, args.env, args.iterations)
+        check_a6(args.username, args.env, args.iterations, args.memory)
     except Exception as e:
         print(e)
