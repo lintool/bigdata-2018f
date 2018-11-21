@@ -148,6 +148,12 @@ spark-submit --class io.bespin.scala.spark.streaming.EventCount \
  target/bespin-1.0.5-SNAPSHOT-fatjar.jar --input taxi-data --checkpoint checkpoint --output output
 </pre>
 
+<p>Before running the Spark streaming job, run the following first, because otherwise you may get "CPU time limit exceeded" errors:</p>
+
+<pre>
+ulimit -t unlimited
+</pre>
+
 <p>Note that there's a recent bug that's cropped up in OpenJDK and Maven, see <a href="https://stackoverflow.com/questions/53010200/maven-surefire-could-not-find-forkedbooter-class">here</a> and <a href="https://issues.apache.org/jira/browse/SUREFIRE-1588">here</a>. The tl;dr is to skip running test cases when building Bespin, as follows:</p>
 
 <pre>
